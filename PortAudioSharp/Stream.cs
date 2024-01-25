@@ -254,7 +254,10 @@ namespace PortAudioSharp
 
             // Free Unmanaged resources
             Close();
-            userDataHandle.Free();
+            try {
+                userDataHandle.Free(); }
+            catch (Exception ex) {
+                System.Console.WriteLine($"PA Exception in Dispose: {ex.Message}"); }
             streamCallback.Free();
             if (finishedCallback != null)
                 finishedCallback.Free();
