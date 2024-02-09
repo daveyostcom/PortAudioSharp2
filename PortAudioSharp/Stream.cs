@@ -227,6 +227,7 @@ namespace PortAudioSharp
 
         ~Stream()
         {
+            Console.WriteLine("PA ~Stream()");
             dispose(false);
         }
 
@@ -235,6 +236,7 @@ namespace PortAudioSharp
         /// </summary>
         public void Dispose()
         {
+            Console.WriteLine("PA Stream Dispose()");
             dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -244,6 +246,7 @@ namespace PortAudioSharp
         /// </summary>
         protected virtual void dispose(bool disposing)
         {
+            Console.WriteLine("PA Stream dispose()");
             if (disposed)
                 return;
 
