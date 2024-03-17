@@ -90,6 +90,7 @@ namespace PortAudioSharp
     public class Stream : IDisposable
     {
         // Clean & manually managed data
+        private bool started = false;
         private bool disposed = false;
         private IntPtr streamPtr = IntPtr.Zero;      // `Stream *`
         private GCHandle userDataHandle;
@@ -306,9 +307,11 @@ namespace PortAudioSharp
         /// </summary>
         public void Start()
         {
+            if (started)  return;
             ErrorCode ec = Native.Pa_StartStream(streamPtr);
             if (ec != ErrorCode.NoError)
                 throw new PortAudioException(ec, "Error starting PortAudio Stream");
+            started = true;
         }
 
         /// <summary>
@@ -317,9 +320,11 @@ namespace PortAudioSharp
         /// </summary>
         public void Stop()
         {
+            if (!started)  return;
             ErrorCode ec = Native.Pa_StopStream(streamPtr);
             if (ec != ErrorCode.NoError)
                 throw new PortAudioException(ec, "Error stopping PortAudio Stream");
+            started = false;
         }
 
         /// <summary>
