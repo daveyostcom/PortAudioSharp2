@@ -68,7 +68,7 @@ namespace PortAudioSharp
         public static extern ErrorCode Pa_IsStreamActive(IntPtr stream);    // `PaStream *`
 
         [DllImport(PortAudioDLL)]
-        public static extern double Pa_GetStreamTime(IntPtr stream);
+        public static extern double Pa_GetStreamTime(IntPtr stream);        // `PaStream *`
 
         [DllImport(PortAudioDLL)]
         public static extern double Pa_GetStreamCpuLoad(IntPtr stream);     // `PaStream *`
